@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js">
+  </script>
+  <title>concern certificate</title>
+</head>
+
+<body>
+  <div style="border-style:dotted" id="generatePdf">
+    <h2 style="margin-left: 1300px;">Date:<%=data.date%></h2>
+    <h1 style="font-family: cursive;margin-left:600px;"><u>CONCERN CERTIFICATE</u></h1>  
+      <h3 style="margin-left: 400px;margin-top:50px;">This is to certify that <%= data.name %> of registration number <%=data.regno %>
+          regno is a student of this institute.</h3>
+    
+          <h3 style="margin-left:400px"> He has joined in the course <%=data.course%> during the academic year <%=data.academic%>.</h3>
+          <h3 style="margin-left:400px">This certificate is issued with reference to her letter dated <%=data.date%> for purpose
+            <%=data.purpose%>.</h3>
+          <br>
+          <h2 style="margin-left: 1300px;">Principal</h2>
+  </div>
+  <button style=" margin-left: 500px;width:50px;height: 50px;" class="btn btn-primary" id="pdf">Print</button>
+  <!-- 
+    <script>
+      function printFunction() { 
+        window.print(); 
+      }
+    </script> -->
+  <script>
+    var button = document.getElementById("pdf");
+    button.addEventListener("click", function () {
+      var doc = new jsPDF("p", "mm", [300, 300]);
+      var makePDF = document.querySelector("#generatePdf");
+      // fromHTML Method
+      doc.fromHTML(makePDF);
+      doc.save("output.pdf");
+    });
+  </script>
+
+</body>
+
+</html>
